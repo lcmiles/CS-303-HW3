@@ -8,31 +8,31 @@ public class HW3 {
     private static int[] array;
 
     public static void main(String[] args) {
-        algorithms("input_16.txt");
+        readFile("input_16.txt");
         System.out.println();
-        algorithms("input_32.txt");
+        readFile("input_32.txt");
         System.out.println();
-        algorithms("input_64.txt");
+        readFile("input_64.txt");
         System.out.println();
-        algorithms("input_128.txt");
+        readFile("input_128.txt");
         System.out.println();
-        algorithms("input_256.txt");
+        readFile("input_256.txt");
         System.out.println();
-        algorithms("input_512.txt");
+        readFile("input_512.txt");
         System.out.println();
-        algorithms("input_1024.txt");
+        readFile("input_1024.txt");
         System.out.println();
-        algorithms("input_2048.txt");
+        readFile("input_2048.txt");
         System.out.println();
-        algorithms("input_4096.txt");
+        readFile("input_4096.txt");
         System.out.println();
-        algorithms("input_8192.txt");
+        readFile("input_8192.txt");
         System.out.println();
-        algorithms("Input_Random.txt");
+        readFile("Input_Random.txt");
         System.out.println();
-        algorithms("Input_ReversedSorted.txt");
+        readFile("Input_ReversedSorted.txt");
     }
-    public static void algorithms(String path) {
+    public static void readFile(String path) {
         try (Scanner reader = new Scanner(Paths.get(path))) {
             while (reader.hasNextLine()) {
             String intString = reader.nextLine();
