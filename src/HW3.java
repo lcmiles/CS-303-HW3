@@ -77,7 +77,7 @@ public class HW3 {
     Returns: nothing
      */
     public static void selectionSort(int[] array) {
-        int size = array.length;
+        int size = array.length; //sets size equal to  number of elements
         for (int i = 0; i < size - 1; i++) { //iterates over the whole array
             int min = i;  //sets smallest value to current index
             for (int j = i + 1; j < size; j++) { //iterates over the unsorted portion of the array
