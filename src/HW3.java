@@ -80,7 +80,7 @@ public class HW3 {
         int size = array.length;
         for (int i = 0; i < size - 1; i++) { //iterates over the whole array
             int min = i;  //sets smallest value to current index
-            for (int j = i + 1; j < size; j++) { //iterates over the portion of the array that has already been sorted
+            for (int j = i + 1; j < size; j++) { //iterates over the unsorted portion of the array
                 if (array[j] < array[min]) { //if the current iteration value is smaller than the original minimum
                     min  = j; //set new minimum to new index
                 }
