@@ -45,7 +45,7 @@ public class HW3 {
         try (Scanner reader = new Scanner(Paths.get(file))) {
             while (reader.hasNextLine()) {
             String intString = reader.nextLine();
-            intString = intString.trim(); //removed extra spaces from the beginning
+            intString = intString.trim(); //removes extra spaces from the beginning
             String[] stringArray = intString.split("\\s"); //splits the string at each space and adds each individual string to an array
             originalArray = new int[stringArray.length]; //initializes array to size of the string array read from the file
             array = new int[stringArray.length]; //initializes a copy of the original array
@@ -74,7 +74,7 @@ public class HW3 {
     Description: finds the minimum element in the unsorted portion of the array then swaps the minimum element in the unsorted portion with the first element in the unsorted portion
     Parameters:
     int[] array - the array of integers to be sorted 
-    Returns:
+    Returns: nothing
      */
     public static void selectionSort(int[] array) {
         int size = array.length;
