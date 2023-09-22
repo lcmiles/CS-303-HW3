@@ -74,7 +74,7 @@ public class HW3 {
     Description: finds the minimum element in the unsorted portion of the array then swaps the minimum element in the unsorted portion with the first element in the unsorted portion
     Parameters:
     int[] array - the array of integers to be sorted 
-    Returns: nothing
+    Returns:
      */
     public static void selectionSort(int[] array) {
         int size = array.length;
