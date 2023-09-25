@@ -56,6 +56,7 @@ public class HW3 {
             }
         }
         reader.close();
+
         long timeInit = System.nanoTime(); //records initial system time in nanoseconds
         selectionSort(array); 
         long timeFinal = System.nanoTime(); // records final system time in nanoseconds
@@ -65,6 +66,27 @@ public class HW3 {
         System.out.println("Array Size: " + (array.length));
         System.out.println("Insertion Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
         array = originalArray; //resets the array
+
+        timeInit = System.nanoTime(); //records initial system time in nanoseconds
+        quickSort(array, 0, array.length-1); 
+        timeFinal = System.nanoTime(); // records final system time in nanoseconds
+        time = timeFinal - timeInit; //calculates time taken for insertion sort algorithm
+        printArray(array);
+        System.out.println("File: " + file);
+        System.out.println("Array Size: " + (array.length));
+        System.out.println("Quick Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
+        array = originalArray; //resets the array
+
+        timeInit = System.nanoTime(); //records initial system time in nanoseconds
+        medianOfThreeQuickSort(array, 0, array.length-1); 
+        timeFinal = System.nanoTime(); // records final system time in nanoseconds
+        time = timeFinal - timeInit; //calculates time taken for insertion sort algorithm
+        printArray(array);
+        System.out.println("File: " + file);
+        System.out.println("Array Size: " + (array.length));
+        System.out.println("Median of 3 Quick Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
+        array = originalArray; //resets the array
+
         } catch (IOException e) {
             e.printStackTrace();
        } 
@@ -103,5 +125,85 @@ public class HW3 {
             s = s + array[i] + " ";
         }
         System.out.println(s);
+    }
+
+    public static void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivot = partition(array, low, high);
+            quickSort(array, low, pivot - 1);
+            quickSort(array, pivot + 1, high);
+        }
+    }
+
+    public static int partition(int[] array, int low, int high) {
+        int x = array[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (array[j] <= x) {
+                i++;
+                int temp = array[i]; 
+                array[i] = array[j]; 
+                array[j] = temp; 
+            }
+        }
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+        return i + 1;
+    }
+
+    public static void medianOfThreeQuickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivot = medianOfThree(array, low, high);
+            int partitionIndex = partitionMedian(array, low, high, pivot);
+            quickSort(array, low, partitionIndex - 1);
+            quickSort(array, partitionIndex + 1, high);
+        }
+    }
+
+    public static int medianOfThree(int[] array, int low, int high) {
+        int mid = low + (high - low) / 2;
+        if (array[low] > array[high]) {
+            if (array[mid] > array[high]) {
+                return mid;
+            }
+            else if (array[low] > array[mid]){
+                return high;
+            }
+            else {
+                return low;
+            }
+        }
+        else {
+            if (array[low] > array[high]) {
+                return low;
+            }
+            else if (array[mid] > array[high]){
+                return low;
+            }
+            else {
+                return mid;
+            }
+        }
+    }
+
+    public static int partitionMedian(int[] array, int low, int high, int pivot) {
+        int x = array[pivot];
+        int temp = array[pivot];
+        array[pivot] = array[high];
+        array[high] = temp;
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (array[j] <= x) {
+                i++;
+                temp = array[i]; 
+                array[i] = array[j]; 
+                array[j] = temp; 
+            }
+        }
+        temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
+        return i + 1;
     }
 }
