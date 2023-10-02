@@ -232,20 +232,20 @@ public class HW3 {
     int i + 1 - the new pivot value for the next call of partition()
      */
     public static int partitionMedian(int[] array, int low, int high, int pivot) {
-        int x = array[pivot];
-        int temp = array[pivot];
-        array[pivot] = array[high];
+        int x = array[pivot]; //set x to value of pivot
+        int temp = array[pivot]; //next few lines swap the pivot index and the highest index
+        array[pivot] = array[high]; 
         array[high] = temp;
         int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (array[j] <= x) {
-                i++;
-                temp = array[i]; 
-                array[i] = array[j]; 
+        for (int j = low; j < high; j++) { //iterate from lowest to highest value in array
+            if (array[j] <= x) { //if the value of the current index is less than the value of the pivot
+                i++; //iterate lowest index forward 1
+                temp = array[i]; //next few lines swap the current index and the pivot
+                array[i] = array[j];
                 array[j] = temp; 
             }
         }
-        temp = array[i + 1];
+        temp = array[i + 1]; //next few lines swap the highest index in the array with the pivot
         array[i + 1] = array[high];
         array[high] = temp;
         return i + 1;
