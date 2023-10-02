@@ -61,7 +61,7 @@ public class HW3 {
         selectionSort(array); 
         long timeFinal = System.nanoTime(); // records final system time in nanoseconds
         long time = timeFinal - timeInit; //calculates time taken for insertion sort algorithm
-        printArray(array);
+        // printArray(array);
         System.out.println("File: " + file);
         System.out.println("Array Size: " + (array.length));
         System.out.println("Insertion Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
@@ -71,7 +71,7 @@ public class HW3 {
         quickSort(array, 0, array.length-1); 
         timeFinal = System.nanoTime(); // records final system time in nanoseconds
         time = timeFinal - timeInit; //calculates time taken for insertion sort algorithm
-        printArray(array);
+        // printArray(array);
         System.out.println("File: " + file);
         System.out.println("Array Size: " + (array.length));
         System.out.println("Quick Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
@@ -81,7 +81,7 @@ public class HW3 {
         medianOfThreeQuickSort(array, 0, array.length-1); 
         timeFinal = System.nanoTime(); // records final system time in nanoseconds
         time = timeFinal - timeInit; //calculates time taken for insertion sort algorithm
-        printArray(array);
+        // printArray(array);
         System.out.println("File: " + file);
         System.out.println("Array Size: " + (array.length));
         System.out.println("Median of 3 Quick Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
@@ -114,7 +114,7 @@ public class HW3 {
     }
 
     /*
-    Description: prints out each element in the array after it is sorted for testing purposes
+    Description: called in main to print out each element in the array after it is sorted for testing purposes
     Parameters:
     int[] array - array that the function prints
     Returns: nothing
@@ -127,47 +127,81 @@ public class HW3 {
         System.out.println(s);
     }
 
+    /*
+    Description: this function recursively calls itself on the array and the resulting subarrays, causing them to be partitioned at the pivot value each time which is determined by partition()
+    Parameters:
+    int[] array - the array to be sorted
+    int low - the lowest index in the array
+    int high - the highest index in the array
+    Returns: nothing
+     */
     public static void quickSort(int[] array, int low, int high) {
-        if (low < high) {
+        if (low < high) { //recursively call function on subarrays until they are of size one
             int pivot = partition(array, low, high);
-            quickSort(array, low, pivot - 1);
-            quickSort(array, pivot + 1, high);
+            quickSort(array, low, pivot - 1); //calls quicksort on the left subarray
+            quickSort(array, pivot + 1, high); //calls quicksort on the right subarray
         }
     }
 
+    /*
+    Description: this function ensures that all indices less than the pivot contain values less than then pivot value and returns the pivot index, sorting the subarray with each call
+    Parameters:
+    int[] array - the array to be sorted
+    int low - the lowest index in the array
+    int high - the highest index in the array
+    Returns:
+    int i + 1 - the new pivot value for the next call of partition()
+     */
     public static int partition(int[] array, int low, int high) {
-        int x = array[high];
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (array[j] <= x) {
-                i++;
-                int temp = array[i]; 
+        int x = array[high]; //set x as the highest value in the array
+        int i = low - 1; //set pivot to the lowest value - 1
+        for (int j = low; j < high; j++) { //iterate from the lowest index of the array to the highest
+            if (array[j] <= x) { //if the value of the current index is less than or equal to the value of the highest index
+                i++; //forward iterate the pivot value by 1
+                int temp = array[i]; //next few lines swap the lowest index and the pivot
                 array[i] = array[j]; 
                 array[j] = temp; 
             }
         }
-        int temp = array[i + 1];
+        int temp = array[i + 1]; //next few lines swap the highest index with the pivot + 1 
         array[i + 1] = array[high];
         array[high] = temp;
-        return i + 1;
+        return i + 1; //return new pivot
     }
 
+    /*
+    Description: this function is essentially the same as quickSort(), except it uses the medianOfThree() function to determine the pivot value, then calls partitionMedian() on that value
+    Parameters:
+    int[] array - the array to be sorted
+    int low - the lowest index in the array
+    int high - the highest index in the array
+    Returns: nothing
+     */
     public static void medianOfThreeQuickSort(int[] array, int low, int high) {
-        if (low < high) {
-            int pivot = medianOfThree(array, low, high);
-            int partitionIndex = partitionMedian(array, low, high, pivot);
-            quickSort(array, low, partitionIndex - 1);
-            quickSort(array, partitionIndex + 1, high);
+        if (low < high) { //recursively call function on subarrays until they are of size one
+            int pivot = medianOfThree(array, low, high); 
+            int partitionIndex = partitionMedian(array, low, high, pivot); //partition at the pivot value
+            quickSort(array, low, partitionIndex - 1); //recursively call on left subarray
+            quickSort(array, partitionIndex + 1, high); //recursively call on right subarray
         }
     }
 
+    /*
+    Description: this function determines the median of the lowest, middle, and highest indices using a series of if statements and returns that value as the pivot
+    Parameters:
+    int[] array - the array to be sorted
+    int low - the lowest index in the array
+    int high - the highest index in the array
+    Returns:
+    int low, int mid, or int high depending on the if conditions which all function as the pivot value
+     */
     public static int medianOfThree(int[] array, int low, int high) {
-        int mid = low + (high - low) / 2;
-        if (array[low] > array[high]) {
-            if (array[mid] > array[high]) {
-                return mid;
+        int mid = low + (high - low) / 2; //calculate middle index
+        if (array[low] > array[high]) { //if the value of the lowest index is greater than the value of the highest index
+            if (array[mid] > array[high]) { //if the value of the middle index is greater than the value of the highest index
+                return mid; 
             }
-            else if (array[low] > array[mid]){
+            else if (array[low] > array[mid]){ //if the value of the lowest index is greater than the value of the middle index
                 return high;
             }
             else {
@@ -175,10 +209,10 @@ public class HW3 {
             }
         }
         else {
-            if (array[low] > array[high]) {
+            if (array[low] > array[high]) { //if the value of the lowest index is greater than the value of the highest index
                 return low;
             }
-            else if (array[mid] > array[high]){
+            else if (array[mid] > array[high]){ //if the value of the middle index is greater than the value of the highest index
                 return low;
             }
             else {
@@ -187,6 +221,16 @@ public class HW3 {
         }
     }
 
+    /*
+    Description: this function ensures that all indices less than the pivot contain values less than then pivot value and returns the pivot index, sorting the subarray with each call
+    Parameters:
+    int[] array - the array to be sorted
+    int low - the lowest index in the array
+    int high - the highest index in the array
+    int pivot - the value at which the array is partitioned
+    Returns:
+    int i + 1 - the new pivot value for the next call of partition()
+     */
     public static int partitionMedian(int[] array, int low, int high, int pivot) {
         int x = array[pivot];
         int temp = array[pivot];
