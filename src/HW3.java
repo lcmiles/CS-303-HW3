@@ -85,7 +85,6 @@ public class HW3 {
         System.out.println("File: " + file);
         System.out.println("Array Size: " + (array.length));
         System.out.println("Median of 3 Quick Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
-        array = originalArray; //resets the array
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,7 +92,7 @@ public class HW3 {
     }
 
     /*
-    Description: finds the minimum element in the unsorted portion of the array then swaps the minimum element in the unsorted portion with the first element in the unsorted portion
+    Description: finds the minimum element in the unsorted portion of the array then swaps it with the first element in the sorted portion
     Parameters:
     int[] array - the array of integers to be sorted 
     Returns: nothing
@@ -150,7 +149,7 @@ public class HW3 {
     }
 
     /*
-    Description: this function ensures that all indices less than the pivot contain values less than then pivot value and returns the pivot index, sorting the subarray with each call
+    Description: this function is responsible for selecting a pivot element and partitioning the array into two subarrays: one containing elements less than or equal to the pivot, and the other containing elements greater than the pivot, then returns the new pivot index
     Parameters:
     int[] array - the array to be sorted
     int low - the lowest index in the array
@@ -237,7 +236,7 @@ public class HW3 {
     }
 
     /*
-    Description: this function ensures that all indices less than the pivot contain values less than then pivot value and returns the pivot index, sorting the subarray with each call
+    Description: this function is responsible for partitioning the array into two subarrays at the pivot: one containing elements less than or equal to the pivot, and the other containing elements greater than the pivot, then returns the new pivot index
     Parameters:
     int[] array - the array to be sorted
     int low - the lowest index in the array
