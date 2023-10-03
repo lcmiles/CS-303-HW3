@@ -97,6 +97,7 @@ public class HW3 {
     Parameters:
     int[] array - the array of integers to be sorted 
     Returns: nothing
+    References: https://www.geeksforgeeks.org/java-program-for-selection-sort/
      */
     public static void selectionSort(int[] array) {
         int size = array.length; //sets size equal to  number of elements
@@ -134,6 +135,7 @@ public class HW3 {
     int low - the lowest index in the array
     int high - the highest index in the array
     Returns: nothing
+    References: https://www.geeksforgeeks.org/java-program-for-quicksort/
      */
     public static void quickSort(int[] array, int low, int high) {
         if (low < high) { //recursively call function on subarrays until they are of size one
@@ -151,6 +153,7 @@ public class HW3 {
     int high - the highest index in the array
     Returns:
     int i + 1 - the new pivot value for the next call of partition()
+    References: https://www.geeksforgeeks.org/java-program-for-quicksort/
      */
     public static int partition(int[] array, int low, int high) {
         int x = array[high]; //set x as the highest value in the array
@@ -176,6 +179,7 @@ public class HW3 {
     int low - the lowest index in the array
     int high - the highest index in the array
     Returns: nothing
+    References: https://stackoverflow.com/questions/27284619/selecting-the-pivot-from-the-median-of-three-items-quicksort-java
      */
     public static void medianOfThreeQuickSort(int[] array, int low, int high) {
         if (low < high) { //recursively call function on subarrays until they are of size one
@@ -194,6 +198,7 @@ public class HW3 {
     int high - the highest index in the array
     Returns:
     int low, int mid, or int high depending on the if conditions which all function as the pivot value
+    References: https://stackoverflow.com/questions/27284619/selecting-the-pivot-from-the-median-of-three-items-quicksort-java
      */
     public static int medianOfThree(int[] array, int low, int high) {
         int mid = low + (high - low) / 2; //calculate middle index
@@ -230,6 +235,7 @@ public class HW3 {
     int pivot - the value at which the array is partitioned
     Returns:
     int i + 1 - the new pivot value for the next call of partition()
+    References: https://stackoverflow.com/questions/27284619/selecting-the-pivot-from-the-median-of-three-items-quicksort-java
      */
     public static int partitionMedian(int[] array, int low, int high, int pivot) {
         int x = array[pivot]; //set x to value of pivot
