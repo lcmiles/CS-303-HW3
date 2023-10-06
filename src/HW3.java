@@ -64,7 +64,7 @@ public class HW3 {
         // printArray(array);
         System.out.println("File: " + file);
         System.out.println("Array Size: " + (array.length));
-        System.out.println("Insertion Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
+        System.out.println("Selection Sort Time: " + time + " nanoseconds, " + (float)time/1000000 + " milliseconds, or " + (float)time/1000000000 + " seconds");
         array = originalArray; //resets the array
 
         timeInit = System.nanoTime(); //records initial system time in nanoseconds
@@ -104,9 +104,9 @@ public class HW3 {
         int size = array.length; //sets size equal to  number of elements
         for (int i = 0; i < size - 1; i++) { //iterates over the whole array
             int min = i;  //sets smallest value to current index
-            for (int j = i + 1; j < size; j++) { //iterates over the unsorted portion of the array
+            for (int j = i + 1; j < size; j++) { //iterates over the remaining unsorted portion of the array
                 if (array[j] < array[min]) { //if the current iteration value is smaller than the original minimum
-                    min  = j; //set new minimum to new index
+                    min = j; //set new minimum to new index
                 }
             }
             int temp = array[i]; //creates temp index copy of the value of the current index
@@ -166,7 +166,7 @@ public class HW3 {
         for (int j = low; j < high; j++) { //iterate from the lowest index of the array to the highest
             if (array[j] <= x) { //if the value of the current index is less than or equal to the value of the highest index
                 i++; //forward iterate the pivot value by 1
-                int temp = array[i]; //next few lines swap the lowest index and the pivot
+                int temp = array[i]; //next few lines swap the current index and the pivot
                 array[i] = array[j]; 
                 array[j] = temp; 
             }
@@ -254,7 +254,7 @@ public class HW3 {
         array[pivot] = array[high]; 
         array[high] = temp;
         int i = low - 1;
-        for (int j = low; j < high; j++) { //iterate from lowest to highest value in array
+        for (int j = low; j < high; j++) { //iterate from lowest to highest index in array
             if (array[j] <= x) { //if the value of the current index is less than the value of the pivot
                 i++; //iterate lowest index forward 1
                 temp = array[i]; //next few lines swap the current index and the pivot
